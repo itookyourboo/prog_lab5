@@ -48,22 +48,25 @@ public class Interactor {
     }
 
     /**
-     * Sets marine asker mode to 'File Mode'.
+     * Sets studyGroup asker mode to 'File Mode'.
      */
     public void setFileMode() {
         fileMode = true;
     }
 
     /**
-     * Sets marine asker mode to 'User Mode'.
+     * Sets studyGroup asker mode to 'User Mode'.
      */
     public void setUserMode() {
         fileMode = false;
     }
 
     /**
-     * Asks a user the marine's name.
-     * @return Marine's name.
+     * Asks a user the studyGroup's name.
+     * @return name
+     * @param inputTitle title of input.
+     * @param minLength min length of string
+     * @param maxLength max length of string
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
     public String askName(String inputTitle, int minLength, int maxLength) throws IncorrectInputInScriptException {
@@ -95,8 +98,9 @@ public class Interactor {
     }
 
     /**
-     * Asks a user the marine's X coordinate.
-     * @return Marine's X coordinate.
+     * Asks a user the studyGroup's X coordinate.
+     * @param withLimit set bounds for X
+     * @return studyGroup's X coordinate.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
     public int askX(boolean withLimit) throws IncorrectInputInScriptException {
@@ -132,8 +136,8 @@ public class Interactor {
     }
 
     /**
-     * Asks a user the marine's Y coordinate.
-     * @return Marine's Y coordinate.
+     * Asks a user the studyGroup's Y coordinate.
+     * @return StudyGroup's Y coordinate.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
     public long askY() throws IncorrectInputInScriptException {
@@ -162,8 +166,8 @@ public class Interactor {
     }
 
     /**
-     * Asks a user the marine's coordinates.
-     * @return Marine's coordinates.
+     * Asks a user the studyGroup's coordinates.
+     * @return StudyGroup's coordinates.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
     public Coordinates askCoordinates() throws IncorrectInputInScriptException {
@@ -172,6 +176,11 @@ public class Interactor {
         return new Coordinates(x, y);
     }
 
+    /**
+     * Asks a user the studyGroup's form of education
+     * @return StudyGroup's form of education
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public FormOfEducation askFormOfEducation() throws IncorrectInputInScriptException {
         String strFormOfEducation;
         FormOfEducation formOfEducation;
@@ -198,6 +207,11 @@ public class Interactor {
         return formOfEducation;
     }
 
+    /**
+     * Asks a user the studyGroup's student count
+     * @return StudyGroup's students count
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public Integer askStudentsCount() throws IncorrectInputInScriptException {
         String strStudentsCount;
         int studentsCount;
@@ -227,6 +241,11 @@ public class Interactor {
         return studentsCount;
     }
 
+    /**
+     * Asks a user the studyGroup's expelled students count
+     * @return StudyGroup's count of expelled students
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public Long askExpelledStudents() throws IncorrectInputInScriptException {
         String strExpelledStudents;
         long expelledStudents;
@@ -256,6 +275,11 @@ public class Interactor {
         return expelledStudents;
     }
 
+    /**
+     * Asks a user the studyGroup's admin
+     * @return Person [Admin]
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public Person askGroupAdmin() throws IncorrectInputInScriptException {
         String name = askAdminName();
         long weight = askWeight();
@@ -264,6 +288,11 @@ public class Interactor {
         return new Person(name, weight, passportID, location);
     }
 
+    /**
+     * Asks a user the studyGroup's count of should be expelled students
+     * @return StudyGroup's count of should be expelled students
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public Integer askShouldBeExpelled() throws IncorrectInputInScriptException {
         String strShouldBeExpelled;
         int shouldBeExpelled;
@@ -293,18 +322,38 @@ public class Interactor {
         return shouldBeExpelled;
     }
 
+    /**
+     * Asks a user the admin's name
+     * @return Person's name
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public String askAdminName() throws IncorrectInputInScriptException {
         return askName("Введите имя админа группы:", 0, Integer.MAX_VALUE);
     }
 
+    /**
+     * Asks a user the location's name
+     * @return Location's name
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public String askLocationName() throws IncorrectInputInScriptException {
         return askName("Введите имя локации:", 0, MAX_LOCATION_NAME_LENGTH);
     }
 
+    /**
+     * Asks a user the studyGroup's name
+     * @return StudyGroup's name
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public String askGroupName() throws IncorrectInputInScriptException {
         return askName("Введите имя группы:", 0, Integer.MAX_VALUE);
     }
 
+    /**
+     * Asks a user the person's weight
+     * @return Person's weight
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public long askWeight() throws IncorrectInputInScriptException {
         String strWeight;
         long weight;
@@ -334,10 +383,20 @@ public class Interactor {
         return weight;
     }
 
+    /**
+     * Asks a user the admin's passport ID
+     * @return Person's passportID
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public String askPassportID() throws IncorrectInputInScriptException {
         return askName("Введите ID паспорта:", 4, Integer.MAX_VALUE);
     }
 
+    /**
+     * Asks a user the admin's location
+     * @return Person's location
+     * @throws IncorrectInputInScriptException if script is running and something goes wrong.
+     */
     public Location askLocation() throws IncorrectInputInScriptException {
         int x = askX(false);
         int y = (int) askY();
