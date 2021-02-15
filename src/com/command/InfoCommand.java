@@ -27,11 +27,11 @@ public class InfoCommand extends Command {
             if (!argument.isEmpty()) throw new WrongAmountOfArgumentsException();
             ZonedDateTime lastInitTime = collectionManager.getLastInitTime();
             String lastInitTimeString = (lastInitTime == null) ? "в данной сессии инициализации еще не происходило" :
-                                        lastInitTime.toLocalDate().toString() + " " + lastInitTime.toLocalTime().toString();
+                                        lastInitTime.toString();
             
             ZonedDateTime lastSaveTime = collectionManager.getLastSaveTime();
             String lastSaveTimeString = (lastSaveTime == null) ? "в данной сессии сохранения еще не происходило" :
-                                        lastSaveTime.toLocalDate().toString() + " " + lastSaveTime.toLocalTime().toString();
+                                        lastSaveTime.toString();
 
             Console.println("Сведения о коллекции:");
             Console.println(" Тип: " + collectionManager.collectionType());

@@ -104,7 +104,10 @@ public class Interactor {
         int x;
         while (true) {
             try {
-                Console.println("Введите координату X > " + MIN_X + ":");
+                if (withLimit)
+                    Console.println("Введите координату X > " + MIN_X + ":");
+                else
+                    Console.println("Введите координату X:");
                 Console.print(Main.INPUT_INFO);
                 strX = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strX);
