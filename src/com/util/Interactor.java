@@ -13,7 +13,7 @@ import com.exception.NotInBoundsException;
 import com.Main;
 
 /**
- * Asks a user a marine's value.
+ * Asks a user a studyGroup's value.
  */
 public class Interactor {
     private final int MIN_X = -512;
