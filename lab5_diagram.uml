@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com</OriginalElement>
+  <nodes>
+    <node x="0.0" y="1113.0">com.command.ClearCommand</node>
+    <node x="0.0" y="1632.0">com.exception.MustBeNotEmptyException</node>
+    <node x="2048.0" y="1246.0">com.xml.ZonedDateTimeXmlAdapter</node>
+    <node x="2931.0" y="1246.0">com.exception.WrongAmountOfElementsException</node>
+    <node x="2215.0000000000005" y="1124.5">com.command.ExecuteScriptCommand</node>
+    <node x="3264.0" y="1246.0">com.exception.StudyGroupNotFoundException</node>
+    <node x="2987.0000000000005" y="1113.0">com.command.RemoveAllByShouldBeExpelledCommand</node>
+    <node x="272.00000000000045" y="1113.0">com.command.InfoCommand</node>
+    <node x="0.0" y="0.0">com.util.CommandManager</node>
+    <node x="1088.0000000000005" y="1102.0">com.command.RemoveLowerCommand</node>
+    <node x="570.0" y="1246.0">com.model.Person</node>
+    <node x="699.0" y="0.0">com.util.CollectionManager</node>
+    <node x="3871.0000000000005" y="1124.5">com.command.HelpCommand</node>
+    <node x="1360.0000000000005" y="1102.0">com.command.CountByGroupAdminCommand</node>
+    <node x="4066.0000000000005" y="1113.0">com.command.RemoveByIdCommand</node>
+    <node x="544.0000000000005" y="1102.0">com.command.RemoveGreaterCommand</node>
+    <node x="2590.0" y="1246.0">com.exception.IncorrectInputInScriptException</node>
+    <node x="2020.0000000000005" y="1124.5">com.command.ExitCommand</node>
+    <node x="277.0" y="1632.0">com.exception.NotInBoundsException</node>
+    <node x="2325.0" y="1246.0">com.xml.StudyGroups</node>
+    <node x="3327.0000000000005" y="1102.0">com.command.AddIfMinCommand</node>
+    <node x="267.0" y="1246.0">com.util.Console</node>
+    <node x="3599.0000000000005" y="1102.0">com.command.UpdateCommand</node>
+    <node x="1601.0" y="1246.0">com.model.Coordinates</node>
+    <node x="2443.0000000000005" y="1113.0">com.command.SaveCommand</node>
+    <node x="816.0000000000005" y="1102.0">com.command.AddCommand</node>
+    <node x="3874.0" y="1246.0">com.exception.ScriptRecursionException</node>
+    <node x="1276.0" y="1246.0">com.util.FileManager</node>
+    <node x="1059.0" y="1246.0">com.model.Location</node>
+    <node x="1632.0000000000005" y="1113.0">com.command.FilterGreaterThanExpelledStudentsCommand</node>
+    <node x="3573.0" y="1246.0">com.exception.CollectionIsEmptyException</node>
+    <node x="0.0" y="1246.0">com.model.StudyGroup</node>
+    <node x="2715.0000000000005" y="1113.0">com.command.ShowCommand</node>
+    <node x="1818.0" y="1246.0">com.Main</node>
+    <node x="389.0" y="0.0">com.util.Interactor</node>
+    <node x="787.0" y="1246.0">com.model.FormOfEducation</node>
+    <node x="2125.7500000000005" y="827.0">com.command.Command</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.command.AddIfMinCommand" target="com.command.Command">
+      <point x="0.0" y="-49.5" />
+      <point x="3453.0000000000005" y="1042.0" />
+      <point x="2262.4687500000005" y="1042.0" />
+      <point x="49.21875" y="82.5" />
+    </edge>
+    <edge source="com.command.RemoveLowerCommand" target="com.command.Command">
+      <point x="0.0" y="-49.5" />
+      <point x="1214.0000000000005" y="1052.0" />
+      <point x="2174.9687500000005" y="1052.0" />
+      <point x="-38.28125" y="82.5" />
+    </edge>
+    <edge source="com.command.SaveCommand" target="com.command.Command">
+      <point x="0.0" y="-38.5" />
+      <point x="2569.0000000000005" y="1072.0" />
+      <point x="2229.6562500000005" y="1072.0" />
+      <point x="16.40625" y="82.5" />
+    </edge>
+    <edge source="com.command.ExitCommand" target="com.command.Command">
+      <point x="0.0" y="-27.0" />
+      <point x="2107.5000000000005" y="1082.0" />
+      <point x="2207.7812500000005" y="1082.0" />
+      <point x="-5.46875" y="82.5" />
+    </edge>
+    <edge source="com.command.RemoveAllByShouldBeExpelledCommand" target="com.command.Command">
+      <point x="0.0" y="-38.5" />
+      <point x="3147.0000000000005" y="1052.0" />
+      <point x="2251.5312500000005" y="1052.0" />
+      <point x="38.28125" y="82.5" />
+    </edge>
+    <edge source="com.command.ExecuteScriptCommand" target="com.command.Command">
+      <point x="0.0" y="-27.0" />
+      <point x="2319.0000000000005" y="1082.0" />
+      <point x="2218.7187500000005" y="1082.0" />
+      <point x="5.46875" y="82.5" />
+    </edge>
+    <edge source="com.command.RemoveGreaterCommand" target="com.command.Command">
+      <point x="0.0" y="-49.5" />
+      <point x="670.0000000000005" y="1032.0" />
+      <point x="2153.0937500000005" y="1032.0" />
+      <point x="-60.15625" y="82.5" />
+    </edge>
+    <edge source="com.command.AddCommand" target="com.command.Command">
+      <point x="0.0" y="-49.5" />
+      <point x="942.0000000000005" y="1042.0" />
+      <point x="2164.0312500000005" y="1042.0" />
+      <point x="-49.21875" y="82.5" />
+    </edge>
+    <edge source="com.command.InfoCommand" target="com.command.Command">
+      <point x="0.0" y="-38.5" />
+      <point x="398.00000000000045" y="1022.0" />
+      <point x="2142.1562500000005" y="1022.0" />
+      <point x="-71.09375" y="82.5" />
+    </edge>
+    <edge source="com.command.UpdateCommand" target="com.command.Command">
+      <point x="0.0" y="-49.5" />
+      <point x="3725.0000000000005" y="1032.0" />
+      <point x="2273.4062500000005" y="1032.0" />
+      <point x="60.15625" y="82.5" />
+    </edge>
+    <edge source="com.command.ShowCommand" target="com.command.Command">
+      <point x="0.0" y="-38.5" />
+      <point x="2841.0000000000005" y="1062.0" />
+      <point x="2240.5937500000005" y="1062.0" />
+      <point x="27.34375" y="82.5" />
+    </edge>
+    <edge source="com.command.CountByGroupAdminCommand" target="com.command.Command">
+      <point x="0.0" y="-49.5" />
+      <point x="1486.0000000000005" y="1062.0" />
+      <point x="2185.9062500000005" y="1062.0" />
+      <point x="-27.34375" y="82.5" />
+    </edge>
+    <edge source="com.command.RemoveByIdCommand" target="com.command.Command">
+      <point x="0.0" y="-38.5" />
+      <point x="4192.0" y="1012.0" />
+      <point x="2295.2812500000005" y="1012.0" />
+      <point x="82.03125" y="82.5" />
+    </edge>
+    <edge source="com.command.ClearCommand" target="com.command.Command">
+      <point x="0.0" y="-38.5" />
+      <point x="126.0" y="1012.0" />
+      <point x="2131.2187500000005" y="1012.0" />
+      <point x="-82.03125" y="82.5" />
+    </edge>
+    <edge source="com.command.HelpCommand" target="com.command.Command">
+      <point x="0.0" y="-27.0" />
+      <point x="3958.5000000000005" y="1022.0" />
+      <point x="2284.3437500000005" y="1022.0" />
+      <point x="71.09375" y="82.5" />
+    </edge>
+    <edge source="com.command.FilterGreaterThanExpelledStudentsCommand" target="com.command.Command">
+      <point x="0.0" y="-38.5" />
+      <point x="1816.0000000000005" y="1072.0" />
+      <point x="2196.8437500000005" y="1072.0" />
+      <point x="-16.40625" y="82.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.32457353619179347" x="2159.0" y="831.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>Project Files</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
