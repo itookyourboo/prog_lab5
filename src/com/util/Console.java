@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import com.exception.NoAccessToFileException;
 import com.exception.ScriptRecursionException;
 import com.Main;
 
@@ -54,7 +55,10 @@ public class Console {
         String[] userCommand = {"", ""};
         int commandStatus;
         scriptStack.add(argument);
-        try (Scanner scriptScanner = new Scanner(new File(argument))) {
+        try {
+            File file = new File(argument);
+            if (!file.canRead()) throw new NoAccessToFileException();
+            Scanner scriptScanner = new Scanner(file);
             if (!scriptScanner.hasNext()) throw new NoSuchElementException();
             Scanner tmpScanner = interactor.getUserScanner();
             interactor.setUserScanner(scriptScanner);
@@ -88,6 +92,8 @@ public class Console {
         } catch (IllegalStateException exception) {
             Console.printerror("Непредвиденная ошибка!");
             System.exit(0);
+        } catch (NoAccessToFileException e) {
+            Console.printerror("Нет доступа к файлу");
         } finally {
             scriptStack.remove(scriptStack.size()-1);
         }

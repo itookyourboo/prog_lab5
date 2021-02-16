@@ -1,5 +1,6 @@
 package com.util;
 
+import com.exception.NoAccessToFileException;
 import com.model.StudyGroup;
 import com.xml.StudyGroups;
 
@@ -37,6 +38,8 @@ public class FileManager {
                 Console.println("Коллекция успешна сохранена в файл!");
             } catch (JAXBException | IOException e) {
                 Console.printerror("Ошибка сохранения в файл!");
+            } catch (NoAccessToFileException e) {
+                Console.printerror("Нет доступа к файлу!");
             }
         } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
     }
@@ -66,16 +69,22 @@ public class FileManager {
                 Console.printerror("Ошибка прочтения XML-файла");
             } catch (FileNotFoundException e) {
                 Console.printerror("Файл не найден");
+            } catch (NoAccessToFileException e) {
+                Console.printerror("Нет доступа к файлу!");
             }
         } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
         return new TreeSet<StudyGroup>();
     }
 
-    private InputStreamReader getInputStreamReader() throws FileNotFoundException {
-        return new InputStreamReader(new FileInputStream(new File(System.getenv(envVariable))));
+    private InputStreamReader getInputStreamReader() throws FileNotFoundException, NoAccessToFileException {
+        File file = new File(System.getenv(envVariable));
+        if (!file.canRead()) throw new NoAccessToFileException();
+        return new InputStreamReader(new FileInputStream(file));
     }
 
-    private BufferedWriter getBufferedWriter() throws IOException {
+    private BufferedWriter getBufferedWriter() throws IOException, NoAccessToFileException {
+        File file = new File(System.getenv(envVariable));
+        if (!file.canWrite()) throw new NoAccessToFileException();
         return new BufferedWriter(new FileWriter(new File(System.getenv(envVariable))));
     }
 }
