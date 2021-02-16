@@ -64,7 +64,6 @@ public class FileManager {
                 Console.printerror("В загрузочном файле не обнаружена необходимая коллекция!");
             } catch (IllegalStateException exception) {
                 Console.printerror("Непредвиденная ошибка!");
-                System.exit(0);
             } catch (JAXBException e) {
                 Console.printerror("Ошибка прочтения XML-файла");
             } catch (FileNotFoundException e) {
@@ -73,18 +72,20 @@ public class FileManager {
                 Console.printerror("Нет доступа к файлу!");
             }
         } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
+        Console.println("Проверьте переменную окружения " + envVariable + " и запустите заново.");
+        System.exit(0);
         return new TreeSet<StudyGroup>();
     }
 
     private InputStreamReader getInputStreamReader() throws FileNotFoundException, NoAccessToFileException {
         File file = new File(System.getenv(envVariable));
-        if (!file.canRead()) throw new NoAccessToFileException();
+        if (file.exists() && !file.canRead()) throw new NoAccessToFileException();
         return new InputStreamReader(new FileInputStream(file));
     }
 
     private BufferedWriter getBufferedWriter() throws IOException, NoAccessToFileException {
         File file = new File(System.getenv(envVariable));
-        if (!file.canWrite()) throw new NoAccessToFileException();
+        if (file.exists() && !file.canWrite()) throw new NoAccessToFileException();
         return new BufferedWriter(new FileWriter(new File(System.getenv(envVariable))));
     }
 }

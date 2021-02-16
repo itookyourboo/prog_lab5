@@ -57,7 +57,7 @@ public class Console {
         scriptStack.add(argument);
         try {
             File file = new File(argument);
-            if (!file.canRead()) throw new NoAccessToFileException();
+            if (file.exists() && !file.canRead()) throw new NoAccessToFileException();
             Scanner scriptScanner = new Scanner(file);
             if (!scriptScanner.hasNext()) throw new NoSuchElementException();
             Scanner tmpScanner = interactor.getUserScanner();
