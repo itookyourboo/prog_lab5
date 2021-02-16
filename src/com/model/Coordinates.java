@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 /**
- * Coordinates com.data class
+ * Coordinates data class
  */
 
 @XmlRootElement(name="Coordinates")

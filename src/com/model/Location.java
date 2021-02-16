@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 /**
- * Location com.data class
+ * Location data class
  */
 @XmlRootElement(name="Location")
 @XmlAccessorType(XmlAccessType.FIELD)

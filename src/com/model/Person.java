@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 /**
- * Person com.data class.
+ * Person data class.
  */
 @XmlRootElement(name="Person")
 @XmlAccessorType(XmlAccessType.FIELD)

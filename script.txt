@@ -1,0 +1,16 @@
+info
+add
+P3122
+42
+50
+30
+10
+12
+DISTANCE_EDUCATION
+Лёха
+90
+S311828
+72
+10
+Дом
+info

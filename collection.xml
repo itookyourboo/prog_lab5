@@ -46,4 +46,27 @@
             </location>
         </groupAdmin>
     </StudyGroup>
+    <StudyGroup>
+        <id>3</id>
+        <name>P3122</name>
+        <coordinates>
+            <x>42</x>
+            <y>50</y>
+        </coordinates>
+        <creationDate>2021-02-16T11:57:18.735+03:00[Europe/Moscow]</creationDate>
+        <studentsCount>30</studentsCount>
+        <expelledStudents>10</expelledStudents>
+        <shouldBeExpelled>12</shouldBeExpelled>
+        <formOfEducation>DISTANCE_EDUCATION</formOfEducation>
+        <groupAdmin>
+            <name>Лёха</name>
+            <weight>90</weight>
+            <passportID>S311828</passportID>
+            <location>
+                <x>72</x>
+                <y>10</y>
+                <name>Дом</name>
+            </location>
+        </groupAdmin>
+    </StudyGroup>
 </StudyGroups>

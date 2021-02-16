@@ -10,7 +10,7 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
- * StudyGroup com.data class
+ * StudyGroup data class
  */
 @XmlRootElement(name="StudyGroup")
 @XmlAccessorType(XmlAccessType.FIELD)
