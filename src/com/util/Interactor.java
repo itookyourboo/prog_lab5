@@ -2,6 +2,7 @@ package com.util;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import com.model.Coordinates;
 import com.model.FormOfEducation;
@@ -23,10 +24,11 @@ public class Interactor {
     private final int MIN_STUDENTS_COUNT = 0;
     private final int MIN_EXPELLED_STUDENTS = 0;
     private final int MIN_SHOULD_BE_EXPELLED = 0;
+    private Pattern patternNumber = Pattern.compile("-?\\d+(\\.\\d+)?");
 
     private Scanner userScanner;
     private boolean fileMode;
-    
+
     public Interactor(Scanner userScanner) {
         this.userScanner = userScanner;
         fileMode = false;
@@ -34,6 +36,7 @@ public class Interactor {
 
     /**
      * Sets a scanner to scan user input.
+     *
      * @param userScanner Scanner to set.
      */
     public void setUserScanner(Scanner userScanner) {
@@ -63,10 +66,11 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's name.
-     * @return name
+     *
      * @param inputTitle title of input.
-     * @param minLength min length of string
-     * @param maxLength max length of string
+     * @param minLength  min length of string
+     * @param maxLength  max length of string
+     * @return name
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
     public String askName(String inputTitle, int minLength, int maxLength) throws IncorrectInputInScriptException {
@@ -99,12 +103,13 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's X coordinate.
+     *
      * @param withLimit set bounds for X
      * @return studyGroup's X coordinate.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
     public int askX(boolean withLimit) throws IncorrectInputInScriptException {
-        String strX;
+        String strX = "";
         int x;
         while (true) {
             try {
@@ -122,10 +127,15 @@ public class Interactor {
                 Console.printerror("Координата X не распознана!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NotInBoundsException exception) {
-                Console.printerror("Координата X должна быть больше " + MIN_X + "!");
+                Console.printerror("Координата X должна быть в диапазоне (" + (withLimit ? MIN_X : Integer.MIN_VALUE)
+                        + ";" + Integer.MAX_VALUE + ")!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NumberFormatException exception) {
-                Console.printerror("Координата X должна быть представлена числом!");
+                if (patternNumber.matcher(strX).matches())
+                    Console.printerror("Координата X должна быть в диапазоне (" + (withLimit ? MIN_X : Integer.MIN_VALUE)
+                            + ";" + Integer.MAX_VALUE + ")!");
+                else
+                    Console.printerror("Координата X должна быть представлена числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
                 Console.printerror("Непредвиденная ошибка!");
@@ -137,11 +147,12 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's Y coordinate.
+     *
      * @return StudyGroup's Y coordinate.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
     public long askY() throws IncorrectInputInScriptException {
-        String strY;
+        String strY = "";
         long y;
         while (true) {
             try {
@@ -155,7 +166,11 @@ public class Interactor {
                 Console.printerror("Координата Y не распознана!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NumberFormatException exception) {
-                Console.printerror("Координата Y должна быть представлена числом!");
+                if (patternNumber.matcher(strY).matches())
+                    Console.printerror("Координата Y должна быть в диапазоне (" + Long.MIN_VALUE
+                            + ";" + Long.MAX_VALUE + ")!");
+                else
+                    Console.printerror("Координата Y должна быть представлена числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
                 Console.printerror("Непредвиденная ошибка!");
@@ -167,6 +182,7 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's coordinates.
+     *
      * @return StudyGroup's coordinates.
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
@@ -178,6 +194,7 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's form of education
+     *
      * @return StudyGroup's form of education
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
@@ -209,11 +226,12 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's student count
+     *
      * @return StudyGroup's students count
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
     public Integer askStudentsCount() throws IncorrectInputInScriptException {
-        String strStudentsCount;
+        String strStudentsCount = "";
         int studentsCount;
         while (true) {
             try {
@@ -228,14 +246,16 @@ public class Interactor {
                 Console.printerror("Число не распознано!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NumberFormatException exception) {
-                Console.printerror("Координата Y должна быть представлена числом!");
+                if (patternNumber.matcher(strStudentsCount).matches())
+                    Console.printerror("Число должно быть в диапазоне (" + MIN_STUDENTS_COUNT + ";" + Integer.MAX_VALUE + ")!");
+                else
+                    Console.printerror("Количество студентов должно быть представлено числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
                 Console.printerror("Непредвиденная ошибка!");
                 System.exit(0);
             } catch (NotInBoundsException e) {
                 Console.printerror("Число должно быть больше " + MIN_STUDENTS_COUNT);
-                e.printStackTrace();
             }
         }
         return studentsCount;
@@ -243,11 +263,12 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's expelled students count
+     *
      * @return StudyGroup's count of expelled students
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
     public Long askExpelledStudents() throws IncorrectInputInScriptException {
-        String strExpelledStudents;
+        String strExpelledStudents = "";
         long expelledStudents;
         while (true) {
             try {
@@ -262,14 +283,16 @@ public class Interactor {
                 Console.printerror("Число не распознано!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NumberFormatException exception) {
-                Console.printerror("Количество должно быть представлено числом!");
+                if (patternNumber.matcher(strExpelledStudents).matches())
+                    Console.printerror("Число должно быть в диапазоне (" + MIN_EXPELLED_STUDENTS + ";" + Long.MAX_VALUE + ")!");
+                else
+                    Console.printerror("Количество студентов должно быть представлено числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
                 Console.printerror("Непредвиденная ошибка!");
                 System.exit(0);
             } catch (NotInBoundsException e) {
                 Console.printerror("Число должно быть больше " + MIN_EXPELLED_STUDENTS);
-                e.printStackTrace();
             }
         }
         return expelledStudents;
@@ -277,6 +300,7 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's admin
+     *
      * @return Person [Admin]
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
@@ -290,11 +314,12 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's count of should be expelled students
+     *
      * @return StudyGroup's count of should be expelled students
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
     public Integer askShouldBeExpelled() throws IncorrectInputInScriptException {
-        String strShouldBeExpelled;
+        String strShouldBeExpelled = "";
         int shouldBeExpelled;
         while (true) {
             try {
@@ -309,14 +334,16 @@ public class Interactor {
                 Console.printerror("Число не распознано!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NumberFormatException exception) {
-                Console.printerror("Количество должно быть представлено числом!");
+                if (patternNumber.matcher(strShouldBeExpelled).matches())
+                    Console.printerror("Число должно быть в диапазоне (" + MIN_SHOULD_BE_EXPELLED + ";" + Integer.MAX_VALUE + ")!");
+                else
+                    Console.printerror("Количество студентов должно быть представлено числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
                 Console.printerror("Непредвиденная ошибка!");
                 System.exit(0);
             } catch (NotInBoundsException e) {
                 Console.printerror("Число должно быть больше " + MIN_SHOULD_BE_EXPELLED);
-                e.printStackTrace();
             }
         }
         return shouldBeExpelled;
@@ -324,6 +351,7 @@ public class Interactor {
 
     /**
      * Asks a user the admin's name
+     *
      * @return Person's name
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
@@ -333,6 +361,7 @@ public class Interactor {
 
     /**
      * Asks a user the location's name
+     *
      * @return Location's name
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
@@ -342,6 +371,7 @@ public class Interactor {
 
     /**
      * Asks a user the studyGroup's name
+     *
      * @return StudyGroup's name
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
@@ -351,11 +381,12 @@ public class Interactor {
 
     /**
      * Asks a user the person's weight
+     *
      * @return Person's weight
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
     public long askWeight() throws IncorrectInputInScriptException {
-        String strWeight;
+        String strWeight = "";
         long weight;
         while (true) {
             try {
@@ -370,14 +401,16 @@ public class Interactor {
                 Console.printerror("Число не распознано!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NumberFormatException exception) {
-                Console.printerror("Вес должен быть представлен числом!");
+                if (patternNumber.matcher(strWeight).matches())
+                    Console.printerror("Число должно быть в диапазоне (" + MIN_WEIGHT + ";" + Long.MAX_VALUE + ")!");
+                else
+                    Console.printerror("Вес должен быть представлен числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
                 Console.printerror("Непредвиденная ошибка!");
                 System.exit(0);
             } catch (NotInBoundsException e) {
                 Console.printerror("Число должно быть больше " + MIN_WEIGHT);
-                e.printStackTrace();
             }
         }
         return weight;
@@ -385,6 +418,7 @@ public class Interactor {
 
     /**
      * Asks a user the admin's passport ID
+     *
      * @return Person's passportID
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
@@ -394,6 +428,7 @@ public class Interactor {
 
     /**
      * Asks a user the admin's location
+     *
      * @return Person's location
      * @throws IncorrectInputInScriptException if script is running and something goes wrong.
      */
@@ -406,8 +441,9 @@ public class Interactor {
 
     /**
      * Asks a user a question.
-     * @return Answer (true/false).
+     *
      * @param question A question.
+     * @return Answer (true/false).
      * @throws IncorrectInputInScriptException If script is running and something goes wrong.
      */
     public boolean askQuestion(String question) throws IncorrectInputInScriptException {
